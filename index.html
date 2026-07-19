@@ -1,642 +1,135 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Airel's personal website — global wholesale e-commerce, experience and contact information.">
-  <meta name="theme-color" content="#123f2e">
-  <title>Airel | Global Wholesale E-commerce</title>
-  <style>
-    :root {
-      --forest: #123f2e;
-      --forest-2: #1e5a42;
-      --leaf: #62ad72;
-      --lime: #cce7b4;
-      --mint: #e9f4e5;
-      --cream: #fbfaf3;
-      --white: #ffffff;
-      --ink: #173126;
-      --muted: #607168;
-      --line: rgba(18, 63, 46, 0.16);
-      --shadow: 0 24px 70px rgba(18, 63, 46, 0.14);
-      --radius: 30px;
-    }
-
-    * { box-sizing: border-box; }
-
-    html {
-      scroll-behavior: smooth;
-      scroll-padding-top: 100px;
-    }
-
-    body {
-      margin: 0;
-      color: var(--ink);
-      background: var(--cream);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    a { color: inherit; }
-
-    .shell {
-      width: min(1160px, calc(100% - 40px));
-      margin: 0 auto;
-    }
-
-    .topbar {
-      position: sticky;
-      top: 16px;
-      z-index: 20;
-      margin-top: 16px;
-    }
-
-    nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-      padding: 12px 14px 12px 22px;
-      border: 1px solid rgba(255, 255, 255, 0.7);
-      border-radius: 999px;
-      background: rgba(251, 250, 243, 0.88);
-      box-shadow: 0 12px 40px rgba(18, 63, 46, 0.1);
-      backdrop-filter: blur(16px);
-    }
-
-    .brand {
-      text-decoration: none;
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 24px;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-    }
-
-    .brand span { color: var(--leaf); }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .nav-links a {
-      padding: 9px 13px;
-      border-radius: 999px;
-      color: var(--muted);
-      font-size: 14px;
-      font-weight: 700;
-      text-decoration: none;
-      transition: 0.2s ease;
-    }
-
-    .nav-links a:hover {
-      color: var(--forest);
-      background: var(--mint);
-    }
-
-    .nav-links .nav-contact {
-      padding: 10px 18px;
-      color: var(--white);
-      background: var(--forest);
-    }
-
-    .hero {
-      position: relative;
-      display: grid;
-      grid-template-columns: 1.08fr 0.92fr;
-      align-items: center;
-      gap: clamp(44px, 7vw, 96px);
-      min-height: calc(100vh - 90px);
-      padding: 70px 0 76px;
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      width: 560px;
-      height: 560px;
-      right: -280px;
-      top: -80px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(98, 173, 114, 0.23), rgba(98, 173, 114, 0));
-      pointer-events: none;
-    }
-
-    .kicker {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 22px;
-      color: var(--forest-2);
-      font-size: 13px;
-      font-weight: 800;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-    }
-
-    .kicker::before {
-      content: "";
-      width: 34px;
-      height: 2px;
-      background: var(--leaf);
-    }
-
-    h1, h2, h3, p { margin-top: 0; }
-
-    h1 {
-      max-width: 690px;
-      margin-bottom: 24px;
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(54px, 7.3vw, 96px);
-      font-weight: 500;
-      letter-spacing: -0.065em;
-      line-height: 0.93;
-    }
-
-    h1 em {
-      color: var(--leaf);
-      font-weight: 500;
-    }
-
-    .lead {
-      max-width: 610px;
-      margin-bottom: 30px;
-      color: var(--muted);
-      font-size: clamp(17px, 2vw, 20px);
-      line-height: 1.75;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      min-height: 50px;
-      padding: 0 22px;
-      border: 1px solid var(--forest);
-      border-radius: 999px;
-      color: var(--white);
-      background: var(--forest);
-      font-weight: 800;
-      text-decoration: none;
-      transition: 0.2s ease;
-    }
-
-    .button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 26px rgba(18, 63, 46, 0.18);
-    }
-
-    .button.secondary {
-      color: var(--forest);
-      background: transparent;
-    }
-
-    .arrow { font-size: 20px; line-height: 1; }
-
-    .portrait-wrap {
-      position: relative;
-      justify-self: end;
-      width: min(100%, 440px);
-      padding: 16px;
-      border: 1px solid rgba(255, 255, 255, 0.7);
-      border-radius: 48% 48% 28px 28px;
-      background: rgba(255, 255, 255, 0.52);
-      box-shadow: var(--shadow);
-    }
-
-    .portrait {
-      display: block;
-      width: 100%;
-      aspect-ratio: 0.78;
-      border-radius: 48% 48% 22px 22px;
-      object-fit: cover;
-      object-position: 50% 30%;
-      filter: saturate(0.9) contrast(1.02);
-    }
-
-    .location-card {
-      position: absolute;
-      left: -48px;
-      bottom: 42px;
-      display: flex;
-      align-items: center;
-      gap: 11px;
-      padding: 13px 17px;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      background: var(--white);
-      box-shadow: 0 14px 35px rgba(18, 63, 46, 0.16);
-      font-size: 14px;
-      font-weight: 800;
-    }
-
-    .dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--leaf);
-      box-shadow: 0 0 0 6px var(--mint);
-    }
-
-    section { padding: 96px 0; }
-
-    .green-section {
-      position: relative;
-      color: var(--white);
-      background: var(--forest);
-      overflow: hidden;
-    }
-
-    .green-section::before,
-    .green-section::after {
-      content: "";
-      position: absolute;
-      border-radius: 50%;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .green-section::before {
-      width: 520px;
-      height: 520px;
-      left: -260px;
-      top: -270px;
-    }
-
-    .green-section::after {
-      width: 340px;
-      height: 340px;
-      right: -120px;
-      bottom: -210px;
-    }
-
-    .section-heading {
-      display: grid;
-      grid-template-columns: 0.42fr 1fr;
-      gap: 40px;
-      align-items: start;
-      margin-bottom: 52px;
-    }
-
-    .section-label {
-      color: var(--leaf);
-      font-size: 13px;
-      font-weight: 900;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-    }
-
-    h2 {
-      margin-bottom: 18px;
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(38px, 5vw, 62px);
-      font-weight: 500;
-      letter-spacing: -0.045em;
-      line-height: 1.04;
-    }
-
-    .section-copy {
-      max-width: 690px;
-      margin-bottom: 0;
-      color: var(--muted);
-      font-size: 18px;
-    }
-
-    .green-section .section-copy { color: rgba(255, 255, 255, 0.7); }
-
-    .about-grid {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .about-card {
-      min-height: 230px;
-      padding: 28px;
-      border: 1px solid rgba(255, 255, 255, 0.13);
-      border-radius: 24px;
-      background: rgba(255, 255, 255, 0.055);
-    }
-
-    .card-number {
-      display: grid;
-      place-items: center;
-      width: 42px;
-      height: 42px;
-      margin-bottom: 45px;
-      border-radius: 50%;
-      color: var(--forest);
-      background: var(--lime);
-      font-weight: 900;
-    }
-
-    .about-card h3 {
-      margin-bottom: 10px;
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 25px;
-      font-weight: 500;
-    }
-
-    .about-card p {
-      margin-bottom: 0;
-      color: rgba(255, 255, 255, 0.64);
-    }
-
-    .timeline {
-      max-width: 900px;
-      margin-left: auto;
-    }
-
-    .timeline-item {
-      display: grid;
-      grid-template-columns: 160px 1fr;
-      gap: 38px;
-      padding: 32px 0;
-      border-top: 1px solid var(--line);
-    }
-
-    .timeline-item:last-child { border-bottom: 1px solid var(--line); }
-
-    .timeline-meta {
-      color: var(--forest-2);
-      font-size: 13px;
-      font-weight: 900;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .timeline-item h3 {
-      margin-bottom: 8px;
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 28px;
-      font-weight: 500;
-    }
-
-    .timeline-item p {
-      max-width: 620px;
-      margin-bottom: 0;
-      color: var(--muted);
-      font-size: 17px;
-    }
-
-    .contact-section { padding-bottom: 70px; }
-
-    .contact-panel {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 48px;
-      align-items: center;
-      padding: clamp(38px, 6vw, 72px);
-      border-radius: var(--radius);
-      color: var(--white);
-      background:
-        radial-gradient(circle at 90% 15%, rgba(204, 231, 180, 0.27), transparent 30%),
-        linear-gradient(135deg, var(--forest), var(--forest-2));
-      box-shadow: var(--shadow);
-    }
-
-    .contact-panel h2 { margin-bottom: 14px; }
-
-    .contact-panel p {
-      max-width: 600px;
-      margin-bottom: 0;
-      color: rgba(255, 255, 255, 0.7);
-      font-size: 18px;
-    }
-
-    .contact-card {
-      padding: 26px;
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      border-radius: 22px;
-      background: rgba(255, 255, 255, 0.09);
-    }
-
-    .contact-card small {
-      display: block;
-      margin-bottom: 7px;
-      color: var(--lime);
-      font-size: 12px;
-      font-weight: 900;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-    }
-
-    .phone {
-      display: inline-block;
-      margin-bottom: 18px;
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(27px, 3vw, 38px);
-      text-decoration: none;
-    }
-
-    .contact-card .button {
-      width: 100%;
-      color: var(--forest);
-      background: var(--lime);
-      border-color: var(--lime);
-    }
-
-    footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      padding: 24px 0 42px;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    footer a {
-      color: var(--forest);
-      font-weight: 800;
-      text-decoration: none;
-    }
-
-    @media (max-width: 880px) {
-      .nav-links a:not(.nav-contact) { display: none; }
-      .hero {
-        grid-template-columns: 1fr;
-        min-height: auto;
-        padding: 76px 0 90px;
-      }
-      .portrait-wrap { justify-self: center; }
-      .section-heading { grid-template-columns: 1fr; gap: 16px; }
-      .about-grid { grid-template-columns: 1fr; }
-      .contact-panel { grid-template-columns: 1fr; }
-    }
-
-    @media (max-width: 580px) {
-      .shell { width: min(100% - 24px, 1160px); }
-      .topbar { top: 8px; margin-top: 8px; }
-      nav { padding: 9px 9px 9px 16px; }
-      .brand { font-size: 21px; }
-      .nav-links .nav-contact { padding: 9px 14px; }
-      h1 { font-size: clamp(50px, 18vw, 72px); }
-      .hero-actions .button { width: 100%; }
-      .portrait-wrap { width: calc(100% - 20px); }
-      .location-card { left: -10px; bottom: 28px; }
-      section { padding: 76px 0; }
-      .timeline-item { grid-template-columns: 1fr; gap: 10px; }
-      .contact-panel { padding: 34px 24px; }
-      footer { flex-direction: column; align-items: flex-start; }
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Lohzihan 的个人主页：在线批发商店经营者、瑜伽馆创业者。" />
+  <meta name="theme-color" content="#071a3d" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Lohzihan | Global Wholesale & Yoga Studio" />
+  <meta property="og:description" content="来自马来西亚、生活于新加坡，经营全球在线批发商店与自己的瑜伽馆。" />
+  <meta property="og:url" content="https://lohzihan666.github.io/" />
+  <meta property="og:image" content="https://lohzihan666.github.io/social-preview.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Lohzihan — Global Wholesale and Yoga Studio" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Lohzihan | Global Wholesale & Yoga Studio" />
+  <meta name="twitter:description" content="来自马来西亚、生活于新加坡，经营全球在线批发商店与自己的瑜伽馆。" />
+  <meta name="twitter:image" content="https://lohzihan666.github.io/social-preview.jpg" />
+  <title>Lohzihan | Personal Website</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header class="topbar shell">
-    <nav aria-label="Main navigation">
-      <a class="brand" href="#home">Airel<span>.</span></a>
+  <header class="hero">
+    <nav class="nav container">
+      <a class="logo" href="#top">Lohzihan</a>
       <div class="nav-links">
-        <a href="#about">About</a>
-        <a href="#experience">Experience</a>
-        <a href="#education">Education</a>
-        <a class="nav-contact" href="#contact">Contact</a>
+        <a href="#about">关于我</a>
+        <a href="#experience">经历</a>
+        <a href="#contact">联系</a>
       </div>
     </nav>
-  </header>
 
-  <main>
-    <section class="hero shell" id="home">
-      <div>
-        <div class="kicker">Kuala Lumpur · Singapore</div>
-        <h1>Hello, I'm <em>Airel.</em></h1>
-        <p class="lead">
-          I manage a global wholesale online store, connecting products,
-          suppliers and customers across international markets.
+    <main id="top" class="hero-content container">
+      <div class="hero-text">
+        <p class="eyebrow">MALAYSIA · SINGAPORE</p>
+        <h1>你好，我是<br /><span>Lohzihan</span></h1>
+        <p class="intro">
+          全球在线批发商店经营者，同时经营自己的瑜伽馆。
+          我喜欢把商业效率、健康生活与长期成长结合在一起。
         </p>
-        <div class="hero-actions">
-          <a class="button" href="#experience">View my experience <span class="arrow">↘</span></a>
-          <a class="button secondary" href="#contact">Let's connect</a>
+        <div class="actions">
+          <a class="button primary" href="#contact">联系我</a>
+          <a class="button secondary" href="#experience">查看经历</a>
         </div>
       </div>
 
       <div class="portrait-wrap">
-        <img class="portrait" src="profile.jpg" alt="Portrait of Airel">
-        <div class="location-card"><span class="dot"></span> Based in KL / SG</div>
+        <div class="portrait-ring"></div>
+        <img class="portrait" src="profile.jpg" alt="Lohzihan 个人照片" />
       </div>
-    </section>
+    </main>
+  </header>
 
-    <section class="green-section" id="about">
-      <div class="shell">
-        <div class="section-heading">
-          <div class="section-label">01 · About</div>
-          <div>
-            <h2>Business-minded, globally connected.</h2>
-            <p class="section-copy">
-              My work combines online commerce, supplier coordination and
-              customer relationships. I value practical ideas, steady growth
-              and meaningful professional connections.
-            </p>
-          </div>
-        </div>
+  <section id="about" class="section container">
+    <div class="section-heading">
+      <p class="eyebrow">ABOUT</p>
+      <h2>关于我</h2>
+    </div>
+    <div class="about-grid">
+      <article class="card featured">
+        <h3>个人简介</h3>
+        <p>
+          我来自马来西亚，目前在新加坡生活与工作。我的主要事业是一家面向全球市场的在线批发商店，
+          同时也经营自己的瑜伽馆，希望用稳定、专业和真诚的方式创造长期价值。
+        </p>
+      </article>
+      <article class="card">
+        <span class="card-number">01</span>
+        <h3>教育</h3>
+        <p>新加坡国立大学</p>
+      </article>
+      <article class="card">
+        <span class="card-number">02</span>
+        <h3>所在地</h3>
+        <p>马来西亚 / 新加坡</p>
+      </article>
+      <article class="card">
+        <span class="card-number">03</span>
+        <h3>专注领域</h3>
+        <p>全球在线批发、商业运营、瑜伽与健康生活</p>
+      </article>
+    </div>
+  </section>
 
-        <div class="about-grid">
-          <article class="about-card">
-            <div class="card-number">01</div>
-            <h3>Global Outlook</h3>
-            <p>Working across markets with an international and open-minded perspective.</p>
-          </article>
-          <article class="about-card">
-            <div class="card-number">02</div>
-            <h3>Online Commerce</h3>
-            <p>Focused on wholesale e-commerce, products, customers and digital operations.</p>
-          </article>
-          <article class="about-card">
-            <div class="card-number">03</div>
-            <h3>KL / Singapore</h3>
-            <p>Connected to the energy and opportunities of Kuala Lumpur and Singapore.</p>
-          </article>
-        </div>
+  <section id="experience" class="section section-soft">
+    <div class="container">
+      <div class="section-heading">
+        <p class="eyebrow">EXPERIENCE</p>
+        <h2>工作经历</h2>
       </div>
-    </section>
-
-    <section id="experience">
-      <div class="shell">
-        <div class="section-heading">
-          <div class="section-label">02 · Experience</div>
-          <div>
-            <h2>Professional journey.</h2>
-            <p class="section-copy">Experience shaped by e-commerce and working in Singapore.</p>
+      <div class="timeline">
+        <article class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <p class="timeline-label">CURRENT</p>
+            <h3>全球在线批发商店</h3>
+            <p>负责跨境业务、产品运营、订单管理以及全球客户服务。</p>
           </div>
-        </div>
-
-        <div class="timeline">
-          <article class="timeline-item">
-            <div class="timeline-meta">Present</div>
-            <div>
-              <h3>Global Wholesale Online Store</h3>
-              <p>Managing online wholesale operations, customer communication and supplier coordination across different markets.</p>
-            </div>
-          </article>
-          <article class="timeline-item">
-            <div class="timeline-meta">Singapore</div>
-            <div>
-              <h3>Professional Experience</h3>
-              <p>Developed practical business experience in Singapore's fast-moving and internationally connected environment.</p>
-            </div>
-          </article>
-        </div>
+        </article>
+        <article class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <p class="timeline-label">ENTREPRENEURSHIP</p>
+            <h3>瑜伽馆经营者</h3>
+            <p>经营自己的瑜伽馆，关注专业体验、身心平衡与长期健康。</p>
+          </div>
+        </article>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section id="education">
-      <div class="shell">
-        <div class="section-heading">
-          <div class="section-label">03 · Education</div>
-          <div>
-            <h2>Education foundation.</h2>
-            <p class="section-copy">A university experience that built the foundation for my professional journey.</p>
-          </div>
-        </div>
-
-        <div class="timeline">
-          <article class="timeline-item">
-            <div class="timeline-meta">Malaysia</div>
-            <div>
-              <h3>SEGi University</h3>
-              <p>Completed my university studies at SEGi University.</p>
-            </div>
-          </article>
-        </div>
+  <section id="contact" class="section container">
+    <div class="contact-box">
+      <div>
+        <p class="eyebrow light">CONTACT</p>
+        <h2>欢迎与我联系</h2>
+        <p>网站名称：Lohzihan666</p>
       </div>
-    </section>
+      <a class="contact-link" href="https://wa.me/6594700078?text=Hello%20Lohzihan%2C%20I%20visited%20your%20website." target="_blank" rel="noopener noreferrer">WhatsApp · +65 9470 0078</a>
+    </div>
+  </section>
 
-    <section class="contact-section" id="contact">
-      <div class="shell">
-        <div class="contact-panel">
-          <div>
-            <div class="section-label" style="color: var(--lime);">04 · Contact</div>
-            <h2>Let's connect.</h2>
-            <p>For professional networking, business conversations and new opportunities.</p>
-          </div>
-          <div class="contact-card">
-            <small>Phone</small>
-            <a class="phone" href="tel:84404715">8440 4715</a>
-            <a class="button" href="tel:84404715">Contact Airel <span class="arrow">→</span></a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="shell">
-    <span>© <span id="year"></span> Airel. All rights reserved.</span>
-    <a href="#home">Back to top ↑</a>
+  <footer>
+    <div class="container footer-inner">
+      <p>© <span id="year"></span> Lohzihan. All rights reserved.</p>
+      <a href="#top">返回顶部 ↑</a>
+    </div>
   </footer>
 
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+    document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
